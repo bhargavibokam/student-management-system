@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class StudentApp {
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
-        StudentService service = new StudentService();
+        StudentOperations service = new StudentService();
         boolean exit = false;
         while(!exit){
             System.out.println("\n=== Student Management System ===");

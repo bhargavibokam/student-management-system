@@ -1,8 +1,10 @@
 package studentsystem;
 
-public class StudentService {
+public class StudentService implements StudentOperations{
     private Student[] data = new Student[10];
     private int count=0;
+
+    @Override
     public boolean add(Student obj){
         if(count < 10){
             data[count] = obj;
@@ -13,6 +15,7 @@ public class StudentService {
         }
         return true;   
     }
+    @Override
     public boolean viewAll(){
         if(count == 0) return false;
         for(int i=0;i<count;i++){
@@ -43,6 +46,8 @@ public class StudentService {
         }
         return false;
     }
+
+    @Override
     public boolean delete(int target){
         if(count == 0) return false;
         int index=-1;
