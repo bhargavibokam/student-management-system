@@ -25,11 +25,11 @@ studentmanagementsystem/
 ## How to Run
 1. Compile the project:
 
-javac studentmanagementsystem/*.java
+javac studentsystem/*.java
 
 2. Run the application:
 
-java studentmanagementsystem.StudentApp
+java studentsystem.StudentApp
 
 ## Learning Outcome
 - Implemented CRUD operations in Java
