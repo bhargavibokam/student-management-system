@@ -1,10 +1,13 @@
 package studentsystem;
 
+import studentsystem.exceptions.StudentLimitExceededException;
+import studentsystem.exceptions.StudentNotFoundException;
+
 public interface StudentOperations{
-    boolean add(Student obj);
-    boolean viewAll();
-    Student search(int target);
-    boolean update(int originalId, int newId, String newName, String newCourse, int newAge);
-    boolean delete(int target);
+    void add(Student obj) throws StudentLimitExceededException;
+    void viewAll()throws StudentNotFoundException;
+    Student search(int target) throws StudentNotFoundException;
+    void update(int originalId, int newId, String newName, String newCourse, int newAge) throws StudentNotFoundException;
+    void delete(int target) throws StudentNotFoundException;
 
 }

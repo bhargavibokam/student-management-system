@@ -1,55 +1,54 @@
 package studentsystem;
+ 
+import studentsystem.exceptions.StudentLimitExceededException;
+import studentsystem.exceptions.StudentNotFoundException;
 
 public class StudentService implements StudentOperations{
     private Student[] data = new Student[10];
     private int count=0;
 
     @Override
-    public boolean add(Student obj){
-        if(count < 10){
-            data[count] = obj;
-            count++;
-        }
-        else{
-            return false;
-        }
-        return true;   
+    public void add(Student obj) throws StudentLimitExceededException{
+        if(count >= data.length){
+            throw new StudentLimitExceededException("Student Limit reached!");
+        }  
+        data[count++] = obj;
     }
     @Override
-    public boolean viewAll(){
-        if(count == 0) return false;
+    public void viewAll() throws StudentNotFoundException{
+        if(count == 0) throw new StudentNotFoundException("students are not added!");
         for(int i=0;i<count;i++){
             System.out.println("Student "+(i+1));
-            data[i].displayInfo();
-            
-        }
-        return true;
+            data[i].displayInfo();         
+        }    
     }
-    public Student search(int target){
+    @Override
+    public Student search(int target) throws StudentNotFoundException{
         for(int i=0;i<count;i++){
             if(data[i].getId() == target){
                 return data[i];
             }
         }
-        return null;
+        throw new StudentNotFoundException("Student not Found");
     }
-    public boolean update(int original, int newid,String newname, String newcourse, int newage){
-        if(count == 0) return false;
+    @Override
+    public void update(int original, int newid,String newname, String newcourse, int newage)
+        throws StudentNotFoundException{
         for(int i=0;i<count;i++){
             if(data[i].getId() == original){
                 data[i].setId(newid);
                 data[i].setName(newname);
                 data[i].setCourse(newcourse);
                 data[i].setAge(newage);
-                return true;
+                data[i].displayInfo();
+                return;
             }
         }
-        return false;
+        throw new StudentNotFoundException("Student not Found To Update");
     }
 
     @Override
-    public boolean delete(int target){
-        if(count == 0) return false;
+    public void delete(int target) throws StudentNotFoundException{
         int index=-1;
         for(int i=0;i<count;i++){
             if(data[i].getId() == target){
@@ -57,13 +56,12 @@ public class StudentService implements StudentOperations{
                 break;
             }
         }
-        if(index == -1) return false;
+        if(index == -1) throw new StudentNotFoundException("Student not found to delete");
         for(int i=index;i<count-1;i++){
             data[i]=data[i+1];
         }
         data[count-1] = null;
         count--;
-        return true;
     }
 }
  

@@ -1,5 +1,8 @@
 package studentsystem;
 import java.util.Scanner;
+
+import studentsystem.exceptions.StudentLimitExceededException;
+import studentsystem.exceptions.StudentNotFoundException;
 public class StudentApp {
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
@@ -30,28 +33,36 @@ public class StudentApp {
                     int age = sc.nextInt();
                     sc.nextLine();
                     
-                    if(service.add(new Student(id,name,course,age))){
+                    try{
+                        service.add(new Student(id,name,course,age));
                         System.out.println("Student record added sucessfully!");
                     }
-                    else{
-                        System.out.println("Cannot add.Memory full!");
+                    catch(StudentLimitExceededException e){
+                        System.out.println("Error: " + e.getMessage());
+                        e.printStackTrace();
                     }
                     break;
                 case 2: // viewall
-                    if(!service.viewAll()){
-                        System.out.println("No students Found!");
+                    try{
+                        service.viewAll();
+                    }
+                    catch(StudentNotFoundException e){
+                        System.out.println("Error: " + e.getMessage());
+                        e.printStackTrace();
                     }
                     break;
                 case 3: //search
                     System.out.print("Enter the Id to search");
                     int searchid = sc.nextInt();
                     sc.nextLine();
-                    Student s = service.search(searchid);
-                    if(s != null){
+        
+                    try{
+                        Student s = service.search(searchid);
                         s.displayInfo();
                     }
-                    else{
-                    System.out.println("Student not found!"); 
+                    catch(StudentNotFoundException e){
+                        System.out.println("Error: " + e.getMessage());
+                        e.printStackTrace();
                     }
                     break;
                 case 4:     //update
@@ -69,22 +80,26 @@ public class StudentApp {
                     int newAge = sc.nextInt();
                     sc.nextLine();
 
-                    if(service.update(originalId, newId, newName, newCourse, newAge)){
+                    try{
+                        service.update(originalId, newId, newName, newCourse, newAge);
                         System.out.println("Student upadated Successfully");
                     }
-                    else{
-                        System.out.println("Student not found!");
+                    catch(StudentNotFoundException e){
+                        System.out.println("Error: " + e.getMessage());
+                        e.printStackTrace();
                     }
                     break;
                 case 5:
                     System.out.print("enter the id to delete:");
                     int deleteId = sc.nextInt();
                     sc.nextLine();
-                    if(service.delete(deleteId)){
-                        System.out.println("Existing student dleted successfully");
+                    try{
+                        service.delete(deleteId);
+                        System.out.println("Student deleted Successfully");
                     }
-                    else{
-                        System.out.println("Student not found!");
+                    catch(StudentNotFoundException e){
+                        System.out.println("Error: " + e.getMessage());
+                        e.printStackTrace();
                     }
                     break;
                 case 6:
