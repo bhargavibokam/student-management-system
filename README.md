@@ -37,5 +37,3 @@ java studentsystem.StudentApp
 - Improved understanding of array-based data management
 
  
-
- 

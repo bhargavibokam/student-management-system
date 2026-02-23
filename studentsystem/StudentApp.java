@@ -1,7 +1,6 @@
 package studentsystem;
 import java.util.Scanner;
 
-import studentsystem.exceptions.StudentLimitExceededException;
 import studentsystem.exceptions.StudentNotFoundException;
 public class StudentApp {
     public static void main(String args[]){
@@ -33,14 +32,9 @@ public class StudentApp {
                     int age = sc.nextInt();
                     sc.nextLine();
                     
-                    try{
-                        service.add(new Student(id,name,course,age));
-                        System.out.println("Student record added sucessfully!");
-                    }
-                    catch(StudentLimitExceededException e){
-                        System.out.println("Error: " + e.getMessage());
-                        e.printStackTrace();
-                    }
+                     //add
+                    service.add(new Student(id,name,course,age));
+                    System.out.println("Student record added sucessfully!");
                     break;
                 case 2: // viewall
                     try{
