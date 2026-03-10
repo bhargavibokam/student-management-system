@@ -33,8 +33,13 @@ public class StudentApp {
                     sc.nextLine();
                     
                      //add
-                    service.add(new Student(id,name,course,age));
-                    System.out.println("Student record added sucessfully!");
+                    try{
+                        service.add(new Student(id,name,course,age));
+                        System.out.println("Student record added sucessfully!");
+                    }
+                    catch(IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 2: // viewall
                     try{
