@@ -1,6 +1,7 @@
 package studentsystem;
+import java.io.Serializable;
  
-public class Student {
+public class Student implements Serializable{
     private int id;
     private String name;
     private String course;
