@@ -1,28 +1,37 @@
 # Student Management System (Java)
 
-A simple console-based Student Management System built using Core Java to practice OOP concepts and basic data handling.
+A console-based Student Management System built using Core Java, demonstrating strong fundamentals of OOP, Collections, Exception Handling, and File Persistence.
 
-## Features
+##  Features
 - Add student
 - View all students
 - Search student by ID
 - Update student details
 - Delete student
+- Prevent duplicate student IDs
+- Persistent data storage using file serialization
 
-## Technologies Used
+##  Technologies Used
 - Java (Core Java)
-- OOP Concepts
-- Arrays
-- Scanner for input
+- OOP (Encapsulation, Abstraction)
+- Interfaces
+- Exception Handling (Custom Exceptions)
+- Collections Framework (HashMap)
+- File Handling (Serialization & Deserialization)
 
-## Project Structure
+##  Project Structure
 
-studentmanagementsystem/
+studentsystem/
 ├── Student.java
 ├── StudentService.java
-└── StudentApp.java
+├── FileStorageService.java
+├── StudentOperations.java
+├── StudentApp.java
+└── exceptions/
+    ├── StudentNotFoundException.java
 
-## How to Run
+##  How to Run
+
 1. Compile the project:
 
 javac studentsystem/*.java
@@ -31,9 +40,14 @@ javac studentsystem/*.java
 
 java studentsystem.StudentApp
 
-## Learning Outcome
-- Implemented CRUD operations in Java
-- Applied OOP principles in a real project
-- Improved understanding of array-based data management
+##  Key Concepts Demonstrated
+- Clean separation of concerns (Service & File handling)
+- Efficient data management using HashMap
+- Persistent storage using serialization
+- Interface-based design for flexibility
+- Proper exception handling and validation
 
- 
+##  Learning Outcome
+- Built a complete CRUD-based application in Java
+- Transitioned from arrays → collections → persistent storage
+- Gained hands-on experience with real-world backend concepts
